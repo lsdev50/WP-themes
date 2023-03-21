@@ -179,3 +179,39 @@ require_once ASTRA_THEME_DIR . 'inc/core/markup/class-astra-markup.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+require_once ASTRA_THEME_DIR . 'inc/widgets/helpers.php';
+
+add_filter( 'siteorigin_panels_settings_defaults', array( $this, 'siteorigin_panels_settings_defaults' ) );
+add_filter( 'siteorigin_panels_widgets', array( $this, 'add_icons_to_page_builder_for_pw_widgets' ), 15 );
+add_filter( 'siteorigin_panels_widget_dialog_tabs', array( $this, 'siteorigin_panels_add_widgets_dialog_tabs' ), 15 );
+
+function siteorigin_panels_settings_defaults( $settings ) {
+		$settings['title-html']           = '<h3 class="widget-title"><span class="widget-title__inline">{{title}}</span></h3>';
+		$settings['full-width-container'] = '.boxed-container';
+		$settings['mobile-width']         = '991';
+
+		return $settings;
+}
+
+	
+function siteorigin_panels_add_widgets_dialog_tabs( $tabs ) {
+		$tabs['pw_widgets'] = array(
+			'title' => esc_html__( 'ProteusThemes Widgets', 'woondershop-pt' ),
+			'filter' => array(
+				'groups' => array( 'pw-widgets' ),
+			),
+		);
+
+		return $tabs;
+}
+
+function add_icons_to_page_builder_for_pw_widgets( $widgets ) {
+		foreach ( $widgets as $class => $widget ) {
+			if ( strstr( $widget['title'], 'ProteusThemes:' ) ) {
+				$widgets[ $class ]['icon']   = 'pw-pb-widget-icon';
+				$widgets[ $class ]['groups'] = array( 'pw-widgets' );
+			}
+		}
+	return $widgets;
+}

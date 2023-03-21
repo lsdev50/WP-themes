@@ -208,4 +208,26 @@ if ( ! function_exists( 'astra_widgets_init' ) ) :
 	}
 	add_action( 'widgets_init', 'astra_widgets_init' );
 
+/**
+ * Load here all the individual widgets
+ *
+ * @package woondershop-pt
+ */
+
+// ProteusWidgets init.
+
+add_action( 'widgets_init', function () {
+	// Custom widgets in the theme.
+	$woondershop_custom_widgets = array(
+		'widget-call-to-action',
+		'widget-image-banner',
+	);
+
+
+	// Load skin specific widgets.
+	foreach ( $woondershop_custom_widgets as $file ) {
+		WoonderShopHelpers::load_file( sprintf( '/inc/widgets/%s.php', $file ) );
+	}
+} );
+
 endif;

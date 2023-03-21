@@ -1,0 +1,21 @@
+{
+  "name": "@fortawesome/fontawesome-free",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsdev50/WP-themes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lsdev50/WP-themes/issues"
+  },
+  "homepage": "https://github.com/lsdev50/WP-themes#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3"
+  }
+}
